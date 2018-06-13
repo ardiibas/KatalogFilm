@@ -72,8 +72,9 @@ public class MainActivity extends AppCompatActivity {
                     @Override
                     public void onItemClick(View view, int position) {
                         Intent intent = new Intent(MainActivity.this, DetailActivity.class);
+                        intent.putExtra("id", listMovies.get(position).getId());
                         startActivity(intent);
-                        Toast.makeText(MainActivity.this, "Halo" + listMovies.get(position).getId(), Toast.LENGTH_SHORT).show();
+//                        Toast.makeText(MainActivity.this, "Halo " + listMovies.get(position).getId(), Toast.LENGTH_SHORT).show();
                     }
                 })
         );

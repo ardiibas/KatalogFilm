@@ -20,6 +20,8 @@ public class DetailActivity extends AppCompatActivity {
     private final String api_key = "6cbbb575d03419c61482de70c8706aae";
     private final String language = "en-US";
 
+    private int id;
+
     private ImageView imageView;
     private TextView tvTitle;
 
@@ -30,6 +32,8 @@ public class DetailActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_detail);
 
+        id = getIntent().getIntExtra("id", 0);
+
         imageView = findViewById(R.id.detail_image);
         tvTitle = findViewById(R.id.detail_title);
 
@@ -38,7 +42,7 @@ public class DetailActivity extends AppCompatActivity {
 
     private void getDetail() {
 
-        Call<Detail> detailCall = service.getDetail(351286, api_key, language);
+        Call<Detail> detailCall = service.getDetail(id, api_key, language);
 
         detailCall.enqueue(new Callback<Detail>() {
             @Override
@@ -46,7 +50,7 @@ public class DetailActivity extends AppCompatActivity {
 
                 Glide.with(getApplicationContext())
                         .load("http://image.tmdb.org/t/p/w185" + response.body()
-                                .getBackdropPath()).into(imageView);
+                                .getPosterPath()).into(imageView);
 
                 tvTitle.setText(response.body().getTitle());
             }
