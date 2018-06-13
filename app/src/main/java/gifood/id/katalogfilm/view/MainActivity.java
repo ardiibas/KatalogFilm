@@ -1,5 +1,6 @@
 package gifood.id.katalogfilm.view;
 
+import android.content.Intent;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -16,6 +17,7 @@ import java.util.List;
 
 import gifood.id.katalogfilm.R;
 import gifood.id.katalogfilm.adapter.CustomAdapterMovie;
+import gifood.id.katalogfilm.model.detail.Detail;
 import gifood.id.katalogfilm.model.list.ListMovie;
 import gifood.id.katalogfilm.model.list.Movie;
 import gifood.id.katalogfilm.network.KatalogClient;
@@ -69,6 +71,8 @@ public class MainActivity extends AppCompatActivity {
                 new ItemClick(KatalogApp.getAppContext(), new ItemClick.OnItemClickListener() {
                     @Override
                     public void onItemClick(View view, int position) {
+                        Intent intent = new Intent(MainActivity.this, DetailActivity.class);
+                        startActivity(intent);
                         Toast.makeText(MainActivity.this, "Halo" + listMovies.get(position).getId(), Toast.LENGTH_SHORT).show();
                     }
                 })
