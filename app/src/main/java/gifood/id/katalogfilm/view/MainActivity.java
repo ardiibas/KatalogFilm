@@ -1,5 +1,6 @@
 package gifood.id.katalogfilm.view;
 
+import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
@@ -15,7 +16,6 @@ import gifood.id.katalogfilm.R;
 import gifood.id.katalogfilm.adapter.CustomAdapterMovie;
 import gifood.id.katalogfilm.model.ListMovie;
 import gifood.id.katalogfilm.model.Movie;
-import gifood.id.katalogfilm.model.Result;
 import gifood.id.katalogfilm.network.KatalogClient;
 import gifood.id.katalogfilm.network.ServiceGenerator;
 import gifood.id.katalogfilm.util.KatalogApp;
@@ -26,8 +26,10 @@ import retrofit2.Response;
 public class MainActivity extends AppCompatActivity {
 
     private List<ListMovie> listMovies = new ArrayList<>();
-    private RecyclerView mRecyclerView;
-    private CustomAdapterMovie mAdapter;
+    private RecyclerView recyclerView;
+    private CustomAdapterMovie customAdapterMovie;
+
+    private FloatingActionButton actionButton;
 
     private final String api_key = "6cbbb575d03419c61482de70c8706aae";
     private final String language = "en-US";
@@ -50,13 +52,25 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        mRecyclerView = findViewById(R.id.main_recycler);
-        mAdapter = new CustomAdapterMovie(getApplicationContext(), listMovies);
+        actionButton = findViewById(R.id.main_floating_action_button);
+
+        recyclerView = findViewById(R.id.main_recycler);
+        customAdapterMovie = new CustomAdapterMovie(getApplicationContext(), listMovies);
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(KatalogApp.getAppContext());
-        mRecyclerView.setLayoutManager(linearLayoutManager);
-        mRecyclerView.setAdapter(mAdapter);
+        recyclerView.setLayoutManager(linearLayoutManager);
+        recyclerView.setAdapter(customAdapterMovie);
 
         getAllMovie();
+
+        recyclerView.addOnScrollListener(new RecyclerView.OnScrollListener() {
+            @Override
+            public void onScrolled(RecyclerView recyclerView, int dx, int dy) {
+                if (dy > 0)
+                    actionButton.hide();
+                else if (dy < 0)
+                    actionButton.show();
+            }
+        });
 
     }
 
@@ -90,7 +104,7 @@ public class MainActivity extends AppCompatActivity {
                     listMovies.add(movie);
                 }
 
-                mAdapter.notifyDataSetChanged();
+                customAdapterMovie.notifyDataSetChanged();
                 Log.d("TAG", "List: " + listMovies.size());
                 Log.d("TAG", "onResponse: " + new Gson().toJsonTree(listMovies));
             }
