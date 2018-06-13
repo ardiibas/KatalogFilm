@@ -1,4 +1,4 @@
-package gifood.id.katalogfilm.model;
+package gifood.id.katalogfilm.model.list;
 
 public class ListMovie {
 

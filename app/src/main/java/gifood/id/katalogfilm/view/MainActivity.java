@@ -16,8 +16,8 @@ import java.util.List;
 
 import gifood.id.katalogfilm.R;
 import gifood.id.katalogfilm.adapter.CustomAdapterMovie;
-import gifood.id.katalogfilm.model.ListMovie;
-import gifood.id.katalogfilm.model.Movie;
+import gifood.id.katalogfilm.model.list.ListMovie;
+import gifood.id.katalogfilm.model.list.Movie;
 import gifood.id.katalogfilm.network.KatalogClient;
 import gifood.id.katalogfilm.network.ServiceGenerator;
 import gifood.id.katalogfilm.util.ItemClick;

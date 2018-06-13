@@ -1,6 +1,6 @@
 package gifood.id.katalogfilm.network;
 
-import gifood.id.katalogfilm.model.Movie;
+import gifood.id.katalogfilm.model.list.Movie;
 import retrofit2.Call;
 import retrofit2.http.GET;
 import retrofit2.http.Query;

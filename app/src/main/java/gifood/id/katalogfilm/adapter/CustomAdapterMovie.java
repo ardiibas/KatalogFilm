@@ -9,13 +9,10 @@ import android.view.ViewGroup;
 
 import com.bumptech.glide.Glide;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import gifood.id.katalogfilm.R;
-import gifood.id.katalogfilm.model.ListMovie;
-import gifood.id.katalogfilm.model.Result;
-import gifood.id.katalogfilm.util.KatalogApp;
+import gifood.id.katalogfilm.model.list.ListMovie;
 
 public class CustomAdapterMovie extends RecyclerView.Adapter<ViewHolderMovie> {
 

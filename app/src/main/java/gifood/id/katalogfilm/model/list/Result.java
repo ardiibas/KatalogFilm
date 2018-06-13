@@ -1,4 +1,4 @@
-package gifood.id.katalogfilm.model;
+package gifood.id.katalogfilm.model.list;
 
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
