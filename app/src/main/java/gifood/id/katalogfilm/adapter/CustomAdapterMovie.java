@@ -15,6 +15,7 @@ import java.util.List;
 import gifood.id.katalogfilm.R;
 import gifood.id.katalogfilm.model.ListMovie;
 import gifood.id.katalogfilm.model.Result;
+import gifood.id.katalogfilm.util.KatalogApp;
 
 public class CustomAdapterMovie extends RecyclerView.Adapter<ViewHolderMovie> {
 
@@ -35,19 +36,21 @@ public class CustomAdapterMovie extends RecyclerView.Adapter<ViewHolderMovie> {
     }
 
     @Override
-    public void onBindViewHolder(@NonNull ViewHolderMovie holder, int position) {
+    public void onBindViewHolder(ViewHolderMovie holder, int position) {
         ListMovie movies = listMovies.get(position);
 
         String imgPath = "http://image.tmdb.org/t/p/w185" + movies.getImage();
-
-/*        Glide.with(context)
-                .load(imgPath)
-                .into(holder.ivPoster);*/
+        String release = "Release : " + movies.getRelease();
+        String vote = "Vote : " +String.valueOf(movies.getVote());
 
         holder.tvTitle.setText(movies.getTitle());
         holder.tvDesc.setText(movies.getOverview());
-        holder.tvDate.setText(movies.getRelease());
-        holder.tvVote.setText(String.valueOf(movies.getVote()));
+        holder.tvDate.setText(release);
+        holder.tvVote.setText(vote);
+
+        Glide.with(context)
+                .load(imgPath)
+                .into(holder.ivPoster);
 
     }
 

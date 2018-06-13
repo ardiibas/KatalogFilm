@@ -51,7 +51,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         mRecyclerView = findViewById(R.id.main_recycler);
-        mAdapter = new CustomAdapterMovie(KatalogApp.getAppContext(), listMovies);
+        mAdapter = new CustomAdapterMovie(getApplicationContext(), listMovies);
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(KatalogApp.getAppContext());
         mRecyclerView.setLayoutManager(linearLayoutManager);
         mRecyclerView.setAdapter(mAdapter);
