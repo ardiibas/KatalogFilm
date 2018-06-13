@@ -70,13 +70,13 @@
                 android:textStyle="bold" />
 
             <TextView
-                android:id="@+id/card_genre"
+                android:id="@+id/card_vote"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_vertical"
                 android:layout_weight="1"
                 android:drawablePadding="5dp"
-                android:text="Genre"
+                android:text="Vote"
                 android:textColor="#7a7a7a"
                 android:textSize="14sp"
                 android:textStyle="bold" />
