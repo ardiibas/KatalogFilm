@@ -6,6 +6,8 @@ import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
+import android.view.View;
+import android.widget.Toast;
 
 import com.google.gson.Gson;
 
@@ -18,6 +20,7 @@ import gifood.id.katalogfilm.model.ListMovie;
 import gifood.id.katalogfilm.model.Movie;
 import gifood.id.katalogfilm.network.KatalogClient;
 import gifood.id.katalogfilm.network.ServiceGenerator;
+import gifood.id.katalogfilm.util.ItemClick;
 import gifood.id.katalogfilm.util.KatalogApp;
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -61,6 +64,15 @@ public class MainActivity extends AppCompatActivity {
         recyclerView.setAdapter(customAdapterMovie);
 
         getAllMovie();
+
+        recyclerView.addOnItemTouchListener(
+                new ItemClick(KatalogApp.getAppContext(), new ItemClick.OnItemClickListener() {
+                    @Override
+                    public void onItemClick(View view, int position) {
+                        Toast.makeText(MainActivity.this, "Halo" + listMovies.get(position).getId(), Toast.LENGTH_SHORT).show();
+                    }
+                })
+        );
 
         recyclerView.addOnScrollListener(new RecyclerView.OnScrollListener() {
             @Override
