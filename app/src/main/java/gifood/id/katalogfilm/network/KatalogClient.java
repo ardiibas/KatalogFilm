@@ -28,4 +28,12 @@ public interface KatalogClient {
             @Query("api_key") String api_key,
             @Query("language") String language
     );
+
+    // Search Movie
+    @GET("3/search/movie")
+    Call<Movie> getSearch(
+            @Query("api_key") String api_key,
+            @Query("language") String language,
+            @Query("query") String query
+    );
 }

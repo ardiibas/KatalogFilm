@@ -28,7 +28,7 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements View.OnClickListener {
 
     private List<ListMovie> listMovies = new ArrayList<>();
     private RecyclerView recyclerView;
@@ -89,6 +89,8 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+        actionButton.setOnClickListener(this);
+
     }
 
     private void getAllMovie() {
@@ -104,7 +106,6 @@ public class MainActivity extends AppCompatActivity {
         movieCall.enqueue(new Callback<Movie>() {
             @Override
             public void onResponse(Call<Movie> call, Response<Movie> response) {
-
 
                 for (int i = 0; i < response.body().getResults().size(); i++) {
                     id = response.body().getResults().get(i).getId();
@@ -131,5 +132,14 @@ public class MainActivity extends AppCompatActivity {
                 Log.e("Fail", t.getMessage() + "");
             }
         });
+    }
+
+    @Override
+    public void onClick(View v) {
+        switch (v.getId()){
+            case R.id.main_floating_action_button:
+                startActivity(new Intent(MainActivity.this, Search.class));
+                break;
+        }
     }
 }
