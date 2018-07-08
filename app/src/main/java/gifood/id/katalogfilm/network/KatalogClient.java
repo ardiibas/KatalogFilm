@@ -2,6 +2,7 @@ package gifood.id.katalogfilm.network;
 
 import gifood.id.katalogfilm.model.detail.Detail;
 import gifood.id.katalogfilm.model.list.Movie;
+import gifood.id.katalogfilm.model.upcoming.Upcoming;
 import retrofit2.Call;
 import retrofit2.http.GET;
 import retrofit2.http.Path;
@@ -20,6 +21,13 @@ public interface KatalogClient {
             @Query("page") String page)
     ;
 
+    // Get Upcoming
+    @GET("3/movie/upcoming")
+    Call<Upcoming> getUpcoming(
+            @Query("api_key") String api_key,
+            @Query("language") String language,
+            @Query("page") String page)
+    ;
 
     // Get detail a movie
     @GET("3/movie/{movie_id}")

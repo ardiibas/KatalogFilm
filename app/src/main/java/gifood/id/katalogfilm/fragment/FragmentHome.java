@@ -79,10 +79,10 @@ public class FragmentHome extends Fragment {
 
             switch (position) {
                 case 0:
-                    return new FramgenSatu();
+                    return new FragmentNowPlaying();
 
                 case 1:
-                    return new FramgenSatu();
+                    return new FragmentUpcoming();
 
                 default:
                     return null;
