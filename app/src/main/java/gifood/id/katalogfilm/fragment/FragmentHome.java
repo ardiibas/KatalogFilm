@@ -22,7 +22,6 @@ public class FragmentHome extends Fragment {
 
     private OnFragmentInteractionListener listener;
 
-
     public static FragmentHome newInstance() {
         return new FragmentHome();
     }
