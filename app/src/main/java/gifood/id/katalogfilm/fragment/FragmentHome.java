@@ -7,6 +7,7 @@ import android.support.annotation.Nullable;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.app.FragmentStatePagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.view.LayoutInflater;
@@ -41,9 +42,10 @@ public class FragmentHome extends Fragment {
         viewPager = view.findViewById(R.id.fragment_home_viewpager);
 
         viewPager.setAdapter(new PagerAdapter(getFragmentManager(), tabLayout.getTabCount()));
-        viewPager.addOnPageChangeListener(new TabLayout.TabLayoutOnPageChangeListener(tabLayout));
         tabLayout.setupWithViewPager(viewPager);
-        tabLayout.setTabMode(TabLayout.MODE_SCROLLABLE);
+        tabLayout.setTabGravity(TabLayout.GRAVITY_FILL);
+        viewPager.addOnPageChangeListener(new TabLayout.TabLayoutOnPageChangeListener(tabLayout));
+        viewPager.addOnPageChangeListener(new TabLayout.TabLayoutOnPageChangeListener(tabLayout));
         tabLayout.setOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
             @Override
             public void onTabSelected(TabLayout.Tab tab) {
@@ -64,8 +66,10 @@ public class FragmentHome extends Fragment {
         return view;
     }
 
-    public class PagerAdapter extends FragmentStatePagerAdapter {
+    public class PagerAdapter extends FragmentPagerAdapter {
         int mNumOfTabs;
+
+        private String title[] = new String[]{"Now Playing", "Upcoming"};
 
         public PagerAdapter(FragmentManager fm, int NumOfTabs) {
             super(fm);
@@ -90,7 +94,12 @@ public class FragmentHome extends Fragment {
 
         @Override
         public int getCount() {
-            return mNumOfTabs;
+            return title.length;
+        }
+
+        @Override
+        public CharSequence getPageTitle(int position) {
+            return title[position];
         }
     }
 
