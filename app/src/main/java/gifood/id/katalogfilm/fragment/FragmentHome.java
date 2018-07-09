@@ -41,7 +41,7 @@ public class FragmentHome extends Fragment {
 
         viewPager = view.findViewById(R.id.fragment_home_viewpager);
 
-        viewPager.setAdapter(new PagerAdapter(getFragmentManager(), tabLayout.getTabCount()));
+        viewPager.setAdapter(new PagerAdapter(getChildFragmentManager(), tabLayout.getTabCount()));
         tabLayout.setupWithViewPager(viewPager);
         tabLayout.setTabGravity(TabLayout.GRAVITY_FILL);
         viewPager.addOnPageChangeListener(new TabLayout.TabLayoutOnPageChangeListener(tabLayout));
@@ -80,16 +80,23 @@ public class FragmentHome extends Fragment {
         @Override
         public Fragment getItem(int position) {
 
+            Fragment fragment = new FragmentNowPlaying();
+
             switch (position) {
                 case 0:
-                    return new FragmentNowPlaying();
+                    fragment = new FragmentNowPlaying();
+                    break;
 
                 case 1:
-                    return new FragmentUpcoming();
+                    fragment = new FragmentUpcoming();
+                    break;
 
                 default:
-                    return null;
+                    fragment = new FragmentNowPlaying();
+                    break;
             }
+
+            return fragment;
         }
 
         @Override
