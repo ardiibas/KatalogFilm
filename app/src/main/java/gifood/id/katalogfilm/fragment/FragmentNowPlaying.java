@@ -21,6 +21,7 @@ import gifood.id.katalogfilm.R;
 import gifood.id.katalogfilm.adapter.CustomAdapterMovie;
 import gifood.id.katalogfilm.model.list.ListMovie;
 import gifood.id.katalogfilm.model.list.Movie;
+import gifood.id.katalogfilm.model.upcoming.Upcoming;
 import gifood.id.katalogfilm.network.KatalogClient;
 import gifood.id.katalogfilm.network.ServiceGenerator;
 import gifood.id.katalogfilm.util.ItemClick;
@@ -69,6 +70,8 @@ public class FragmentNowPlaying extends Fragment {
 
         getAllMovie();
 
+        getNow();
+
         recyclerView.addOnItemTouchListener(
                 new ItemClick(KatalogApp.getAppContext(), new ItemClick.OnItemClickListener() {
                     @Override
@@ -82,6 +85,44 @@ public class FragmentNowPlaying extends Fragment {
         );
 
         return view;
+    }
+
+    private void getNow() {
+        Call<Upcoming> movieCall = service.getNowPlaying(
+                api_key,
+                language,
+                page
+        );
+
+        movieCall.enqueue(new Callback<Upcoming>() {
+            @Override
+            public void onResponse(Call<Upcoming> call, Response<Upcoming> response) {
+
+                for (int i = 0; i < response.body().getResults().size(); i++) {
+                    id = response.body().getResults().get(i).getId();
+                    image = response.body().getResults().get(i).getPosterPath();
+                    title = response.body().getResults().get(i).getTitle();
+                    overview = response.body().getResults().get(i).getOverview();
+                    release = response.body().getResults().get(i).getReleaseDate();
+                    vote = response.body().getResults().get(i).getVoteAverage();
+
+                    ListMovie Upcoming = new ListMovie(
+                            id, image, title, overview, release, vote
+                    );
+
+                    listMovies.add(Upcoming);
+                }
+
+                customAdapterMovie.notifyDataSetChanged();
+                Log.d("TAG", "List: " + listMovies.size());
+                Log.d("TAG", "onResponse: " + new Gson().toJsonTree(listMovies));
+            }
+
+            @Override
+            public void onFailure(Call<Upcoming> call, Throwable t) {
+                Log.e("Fail", t.getMessage() + "");
+            }
+        });
     }
 
     private void getAllMovie() {

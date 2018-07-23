@@ -21,6 +21,14 @@ public interface KatalogClient {
             @Query("page") String page)
     ;
 
+    //Now Playing
+    @GET("3/movie/now_playing")
+    Call<Upcoming> getNowPlaying(
+            @Query("api_key") String api_key,
+            @Query("language") String language,
+            @Query("page") String page)
+    ;
+
     // Get Upcoming
     @GET("3/movie/upcoming")
     Call<Upcoming> getUpcoming(
