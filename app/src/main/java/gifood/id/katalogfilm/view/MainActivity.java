@@ -71,7 +71,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 new ItemClick(KatalogApp.getAppContext(), new ItemClick.OnItemClickListener() {
                     @Override
                     public void onItemClick(View view, int position) {
-                        Intent intent = new Intent(MainActivity.this, DetailActivity.class);
+                        Intent intent = new Intent(MainActivity.this, ScrollingActivity.class);
                         intent.putExtra("id", listMovies.get(position).getId());
                         startActivity(intent);
 //                        Toast.makeText(MainActivity.this, "Halo " + listMovies.get(position).getId(), Toast.LENGTH_SHORT).show();

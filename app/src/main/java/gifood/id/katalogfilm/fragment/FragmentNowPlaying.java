@@ -28,6 +28,7 @@ import gifood.id.katalogfilm.util.ItemClick;
 import gifood.id.katalogfilm.util.KatalogApp;
 import gifood.id.katalogfilm.view.DetailActivity;
 import gifood.id.katalogfilm.view.MainActivity;
+import gifood.id.katalogfilm.view.ScrollingActivity;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -76,7 +77,7 @@ public class FragmentNowPlaying extends Fragment {
                 new ItemClick(KatalogApp.getAppContext(), new ItemClick.OnItemClickListener() {
                     @Override
                     public void onItemClick(View view, int position) {
-                        Intent intent = new Intent(getActivity(), DetailActivity.class);
+                        Intent intent = new Intent(getActivity(), ScrollingActivity.class);
                         intent.putExtra("id", listMovies.get(position).getId());
                         startActivity(intent);
 //                        Toast.makeText(MainActivity.this, "Halo " + listMovies.get(position).getId(), Toast.LENGTH_SHORT).show();
