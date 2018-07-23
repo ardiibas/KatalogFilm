@@ -36,8 +36,6 @@ public class FragmentHome extends Fragment {
         );
 
         tabLayout = view.findViewById(R.id.fragment_home_tab);
-        tabLayout.addTab(tabLayout.newTab().setText("A"));
-        tabLayout.addTab(tabLayout.newTab().setText("B"));
 
         viewPager = view.findViewById(R.id.fragment_home_viewpager);
 
@@ -69,7 +67,7 @@ public class FragmentHome extends Fragment {
     public class PagerAdapter extends FragmentPagerAdapter {
         int mNumOfTabs;
 
-        private String title[] = new String[]{"Now Playing", "Upcoming"};
+        private String title[] = new String[]{getString(R.string.now_playing), getString(R.string.upcoming)};
 
         public PagerAdapter(FragmentManager fm, int NumOfTabs) {
             super(fm);

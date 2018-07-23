@@ -12,11 +12,13 @@ import android.widget.Toast;
 import gifood.id.katalogfilm.R;
 import gifood.id.katalogfilm.fragment.FragmentHome;
 import gifood.id.katalogfilm.fragment.FragmentSearch;
+import gifood.id.katalogfilm.fragment.FragmentSetting;
 
 public class Home extends AppCompatActivity implements
         BottomNavigationView.OnNavigationItemSelectedListener,
         FragmentHome.OnFragmentInteractionListener,
-        FragmentSearch.OnFragmentInteractionListener {
+        FragmentSearch.OnFragmentInteractionListener,
+        FragmentSetting.OnFragmentInteractionListener {
 
     private BottomNavigationView bottomNavigationMenu;
 
@@ -46,7 +48,7 @@ public class Home extends AppCompatActivity implements
                 break;
 
             case R.id.menu_setting:
-                Toast.makeText(this, "Home", Toast.LENGTH_SHORT).show();
+                fragment = FragmentSetting.newInstance();
                 break;
         }
 
