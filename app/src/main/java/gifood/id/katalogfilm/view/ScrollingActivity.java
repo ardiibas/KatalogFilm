@@ -1,11 +1,9 @@
 package gifood.id.katalogfilm.view;
 
+import android.annotation.SuppressLint;
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -27,7 +25,7 @@ public class ScrollingActivity extends AppCompatActivity {
     private int id;
 
     private ImageView imageView;
-    private TextView tvTitle;
+    private TextView tvTitle, tvTagline, tvOver, tvRelease;
 
     private final KatalogClient service = ServiceGenerator.createService(KatalogClient.class);
 
@@ -42,6 +40,9 @@ public class ScrollingActivity extends AppCompatActivity {
 
         imageView = findViewById(R.id.detail_image);
         tvTitle = findViewById(R.id.detail_title);
+        tvTagline = findViewById(R.id.tagline);
+        tvOver = findViewById(R.id.overview);
+        tvRelease = findViewById(R.id.release);
 
         getDetail();
     }
@@ -51,6 +52,7 @@ public class ScrollingActivity extends AppCompatActivity {
         Call<Detail> detailCall = service.getDetail(id, api_key, language);
 
         detailCall.enqueue(new Callback<Detail>() {
+            @SuppressLint("SetTextI18n")
             @Override
             public void onResponse(Call<Detail> call, Response<Detail> response) {
 
@@ -59,6 +61,9 @@ public class ScrollingActivity extends AppCompatActivity {
                                 .getPosterPath()).into(imageView);
 
                 tvTitle.setText(response.body().getTitle());
+                tvTagline.setText(response.body().getTagline());
+                tvOver.setText(response.body().getOverview());
+                tvRelease.setText("Release date : " + response.body().getReleaseDate());
             }
 
             @Override
