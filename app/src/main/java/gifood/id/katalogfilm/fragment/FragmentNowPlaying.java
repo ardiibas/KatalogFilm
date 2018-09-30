@@ -26,8 +26,6 @@ import gifood.id.katalogfilm.network.KatalogClient;
 import gifood.id.katalogfilm.network.ServiceGenerator;
 import gifood.id.katalogfilm.util.ItemClick;
 import gifood.id.katalogfilm.util.KatalogApp;
-import gifood.id.katalogfilm.view.DetailActivity;
-import gifood.id.katalogfilm.view.MainActivity;
 import gifood.id.katalogfilm.view.ScrollingActivity;
 import retrofit2.Call;
 import retrofit2.Callback;

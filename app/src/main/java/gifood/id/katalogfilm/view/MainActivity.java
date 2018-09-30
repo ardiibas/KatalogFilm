@@ -28,13 +28,11 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class MainActivity extends AppCompatActivity implements View.OnClickListener {
+public class MainActivity extends AppCompatActivity {
 
     private List<ListMovie> listMovies = new ArrayList<>();
     private RecyclerView recyclerView;
     private CustomAdapterMovie customAdapterMovie;
-
-    private FloatingActionButton actionButton;
 
     private final String api_key = "6cbbb575d03419c61482de70c8706aae";
     private final String language = "en-US";
@@ -57,8 +55,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        actionButton = findViewById(R.id.main_floating_action_button);
-
         recyclerView = findViewById(R.id.main_recycler);
         customAdapterMovie = new CustomAdapterMovie(getApplicationContext(), listMovies);
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(KatalogApp.getAppContext());
@@ -78,18 +74,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                     }
                 })
         );
-
-        recyclerView.addOnScrollListener(new RecyclerView.OnScrollListener() {
-            @Override
-            public void onScrolled(RecyclerView recyclerView, int dx, int dy) {
-                if (dy > 0)
-                    actionButton.hide();
-                else if (dy < 0)
-                    actionButton.show();
-            }
-        });
-
-        actionButton.setOnClickListener(this);
 
     }
 
@@ -132,14 +116,5 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 Log.e("Fail", t.getMessage() + "");
             }
         });
-    }
-
-    @Override
-    public void onClick(View v) {
-        switch (v.getId()){
-            case R.id.main_floating_action_button:
-                startActivity(new Intent(MainActivity.this, Search.class));
-                break;
-        }
     }
 }

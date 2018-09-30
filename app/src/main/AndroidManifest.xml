@@ -12,10 +12,6 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity android:name=".view.MainActivity" />
-        <activity
-            android:name=".view.DetailActivity"
-            android:theme="@style/AppTheme.NoActionBar" />
-        <activity android:name=".view.Search" />
         <activity android:name=".view.Home">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -25,7 +21,7 @@
         </activity>
         <activity
             android:name=".view.ScrollingActivity"
-            android:label="@string/title_activity_scrolling"
+            android:label=""
             android:theme="@style/AppTheme.NoActionBar"/>
     </application>
 
